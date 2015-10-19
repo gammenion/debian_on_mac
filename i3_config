@@ -165,15 +165,18 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c 1 set Master 2dB+ u
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c 1 set Master 2dB- unmute"
 bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 1 toggle"
 
-# Screen resolution to 1920x1200
-exec --no-startup-id xrandr --output eDP1 --mode 1920x1200
+# Screen resolution and adapt to multiple monitors automatically
+exec --no-startup-id /usr/local/bin/adjust_monitors.sh
 
 # Mod+Shift+a locks the screen
 #bindsym $mod+Shift+a exec "i3lock -i ~/.i3/windows10_screenshot.png -d -I 10 -p win -e"
-bindsym $mod+Shift+a exec "i3lock -d -I 10 -p win -e"
+bindsym $mod+Shift+a exec "~/bin/screensaver.sh"
 
 # Startup workspaces
 # 1: 2 terminals
 exec --no-startup-id "workspace 1; i3-sensible-terminal; split h; i3-sensible-terminal"
 # 2: iceweasel
 exec --no-startup-id i3-msg 'workspace 2; exec iceweasel; workspace 1'
+
+# Set screenlock on inactivity
+exec xautolock -time 10 -corners +-00 -cornerdelay 2 -cornerredelay 5 -locker '~/bin/screensaver.sh' &

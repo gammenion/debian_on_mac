@@ -17,12 +17,15 @@ This file will:
 * Set the left Command key as $mod (the default)
 * Set `Command + Shift + a` to lock the screen
 * Rightfully set keys for screen brightness, keyboard backlit and sound 
+* Set screensaver to 10 minutes with xautolock
+* Define a blurry background image for the screensaver
 
 There are a few package dependencies for this file to work fully:
 1. xbacklight: to adjust screen brightness
 2. alsa-utils: to adjust volume - up and down
 3. pulseaudio-utils: to mute and unmute
 4. Keyboard backlight: this is a script, not a package. See section below
+5. xautolock: to set a timer for the screensaver
 
 ### i3 status bar - file: i3status.conf
 
@@ -39,6 +42,14 @@ For the mapped key to work properly as it requires root privileges, the followin
 ### Touchpad - file: 50-synaptics-clickpad.conf
 
 This file makes several improvements to the usability of the trackpad. It must be located at `/etc/X11/xorg.conf.d`
+
+### Screensaver - file: screensaver.sh
+
+This is the parameter run by xautolock. It takes a screenshot of your desktop, makes it blurry and sets it as the background of the screensaver.
+
+### Adjust monitors - file: adjust_monitors.sh
+
+Automatically sets the resolution for multiple monitors. This is run when logging in to i3.
 
 ### Bash Profile
 
