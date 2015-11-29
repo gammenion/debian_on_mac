@@ -3,7 +3,7 @@
 FINALMODE=""
 for sc in `xrandr | grep " connected" | cut -f 1 -d " "`; do
     case $sc in
-        eDP1)
+        eDP1|eDP-1)
             MODE="--mode 1920x1200 --pos 0x0"
             ;;
         *)
@@ -14,4 +14,4 @@ for sc in `xrandr | grep " connected" | cut -f 1 -d " "`; do
     FINALMODE="$FINALMODE --output $sc $MODE"
 done
 
-echo xrandr $FINALMODE
+xrandr $FINALMODE
